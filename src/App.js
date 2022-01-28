@@ -1,15 +1,16 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import { PrivateRoute } from "./privateRoute/privateRoute";
+import { Home, Login, Signup } from "./pages"
+// import { PrivateRoute } from "./privateRoute/privateRoute";
 
 function App() {
   return (
-    <div className="App">
+    <div className="App bg-neutral-50">
       <Routes>
-        <Route path="/" element="" />
-        <Route path="/login" element="" />
-        <Route path="/signup" element="" />
-        <Route
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        {/* <Route
           path="/dashboard"
           element={
             <PrivateRoute>
@@ -48,7 +49,7 @@ function App() {
               <Charts />
             </PrivateRoute>
           }
-        />
+        /> */}
       </Routes>
     </div>
   );
