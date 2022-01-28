@@ -6,9 +6,13 @@ import {
   InputGroup,
   StyledError,
 } from "../Components/FormComponents";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
 import { signUp } from "../../../app/Features/Auth/authSlice";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { ClipLoader } from "react-spinners";
 
 const initialValues = {
   name: "",
@@ -27,7 +31,7 @@ const validationSchema = Yup.object({
 
 export const Signup = () => {
   const dispatch = useDispatch();
-  const { signUpStatus } = useSearchParams((state) => state.auth);
+  const { signUpStatus } = useSelector((state) => state.auth);
   console.log("Signup status: ", { signUpStatus });
 
   const handleSignup = (values) => {
@@ -36,6 +40,15 @@ export const Signup = () => {
     dispatch(signUp({ name, email, password }));
     console.log({ name, email, password });
   };
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (signUpStatus === "fulfilled") {
+      setTimeout(() => {
+        navigate("/login");
+      }, 1500);
+    }
+  }, [signUpStatus, navigate]);
 
   return (
     <div className="w-full h-screen">
@@ -86,7 +99,14 @@ export const Signup = () => {
                     type="submit"
                     className="rounded-sm px-6 py-2 bg-slate-900 text-gray-200 hover:bg-slate-800"
                   >
-                    Sign Up
+                    {signUpStatus === "loading" ? (
+                      <span className="w-full flex justify-center">
+                        <ClipLoader size={25} color="white" loading={true} />{" "}
+                        Please Wait
+                      </span>
+                    ) : (
+                      "Sign Up"
+                    )}
                   </button>
                 </InputGroup>
               </Form>

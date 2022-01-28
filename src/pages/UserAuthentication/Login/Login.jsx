@@ -9,6 +9,9 @@ import {
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../../app/Features/Auth/authSlice";
+import { ClipLoader } from "react-spinners";
+import { useNavigate } from "react-router"
+import { useEffect } from "react";
 
 const initialValues = {
   email: "",
@@ -33,6 +36,14 @@ export const Login = () => {
     dispatch(login({ email, password }));
     console.log({ email, password });
   };
+  const navigate = useNavigate()
+  useEffect(()=>{
+    if( loggedInStatus === "fulfilled" ){
+      setTimeout(()=>{
+        navigate("/dashboard")
+      },100)
+    }
+  }, [ loggedInStatus, navigate])
 
   return (
     <div className="w-full h-screen">
@@ -78,7 +89,13 @@ export const Login = () => {
                     type="submit"
                     className="rounded-sm px-6 py-2 bg-slate-900 text-gray-200 hover:bg-slate-800"
                   >
-                    Login
+                    {loggedInStatus === "loading" ? (
+                      <span className="w-full flex justify-center">
+                        <ClipLoader size={25} color="white" loading={true} /> Please Wait
+                      </span>
+                    )
+                      : "Login"
+                  }
                   </button>
                 </InputGroup>
               </Form>

@@ -12,8 +12,8 @@ export const login = createAsyncThunk(
 
 export const signUp = createAsyncThunk(
   "auth/signUp",
-  async ({ firstName, lastname, email, password }) => {
-    const response = await signupUser(firstName, lastname, email, password);
+  async ({ name, email, password }) => {
+    const response = await signupUser(name, email, password);
     console.log("From signup async thunk: ", { response });
     return response.data;
   }
@@ -51,26 +51,26 @@ export const authSlice = createSlice({
     },
     [login.fulfilled]: (state, action) => {
       console.log("From extra reducer in login: ", action.payload);
-      const { token, userId } = action.payload;
+      const { token, _id } = action.payload;
       state.token = token;
-      state.userId = userId;
+      state.userId = _id;
       state.loggedInStatus = "fulfilled";
       localStorage.setItem("token", token);
-      localStorage.setItem("id", userId);
+      localStorage.setItem("id", _id);
     },
     [login.rejected]: (state) => {
       state.loggedInStatus = state.loggedInError = "error";
     },
     [signUp.pending]: (state) => {
-      state.signupStatus = "loading";
-      state.signupError = null;
+      state.signUpStatus = "loading";
+      state.signUpError = null;
     },
     [signUp.fulfilled]: (state, action) => {
       console.log("From extra reducers in signup:", action.payload);
-      state.signupStatus = "fulfilled";
+      state.signUpStatus = "fulfilled";
     },
     [signUp.rejected]: (state) => {
-      state.signupStatus = state.signupError = "error";
+      state.signUpStatus = state.signUpError = "error";
     },
   },
 });

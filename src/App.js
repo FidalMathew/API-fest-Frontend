@@ -1,7 +1,7 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import { Home, Login, Signup } from "./pages"
-// import { PrivateRoute } from "./privateRoute/privateRoute";
+import { Home, Login, Signup, Dashboard } from "./pages";
+import { PrivateRoute } from "./privateRoute/privateRoute";
 
 function App() {
   return (
@@ -10,15 +10,15 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        {/* <Route
+        <Route
           path="/dashboard"
           element={
             <PrivateRoute>
               <Dashboard />
-            </PrivateRoute>   
+            </PrivateRoute>
           }
         />
-        <Route
+        {/* <Route
           path="/goal"
           element={
             <PrivateRoute>
