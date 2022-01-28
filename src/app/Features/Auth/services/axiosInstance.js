@@ -1,11 +1,11 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: "something.app/",
+  baseURL: "https://btracker-api.herokuapp.com/api/",
 });
 
 export const authorizedAxios = axios.create({
-  baseURL: "something.app/",
+  baseURL: "https://btracker-api.herokuapp.com/api/",
 });
 
 authorizedAxios.interceptors.request.use((config) => {

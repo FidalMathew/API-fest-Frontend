@@ -5,7 +5,7 @@ import { Home, Login, Signup } from "./pages"
 
 function App() {
   return (
-    <div className="App bg-neutral-50">
+    <div className="App">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
@@ -15,7 +15,7 @@ function App() {
           element={
             <PrivateRoute>
               <Dashboard />
-            </PrivateRoute>
+            </PrivateRoute>   
           }
         />
         <Route
