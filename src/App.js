@@ -8,8 +8,8 @@ function App() {
     <div className="App bg-neutral-50">
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="login" element={<Login />} />
-        <Route path="signup" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
         {/* <Route
           path="/dashboard"
           element={
