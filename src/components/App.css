@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 .App {
     margin: 2%;
 }
@@ -18,4 +22,8 @@ td, th, tr {
     text-align: left;
     padding: 8px;
     text-align: center;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
 }

@@ -15,8 +15,8 @@ addRow(["2.", "lorem ipsum", "lorem ipsum", "lorem ipsum", "lorem ipsum", "lorem
 export default function App() {
     return (
         <div className="App">
-            <table id="transactionHistory">
-                <tr>
+            <table id="transactionHistory" className="border-separate border border-slate-500 ...">
+                <tr className="text-2xl font-bold">
                     <th>Sl.no</th>
                     <th>Type</th>
                     <th>Amount</th>
@@ -25,7 +25,7 @@ export default function App() {
                     <th>NOTE</th>
                     <th>Date</th>
                 </tr>
-                <tr>
+                <tr className="text-1xl">
                     <td>1.</td>
                     <td>Lorem Ipsum</td>
                     <td>Lorem Ipsum</td>
