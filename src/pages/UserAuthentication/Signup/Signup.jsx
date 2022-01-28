@@ -1,4 +1,4 @@
-import login from "../assets/login.svg";
+import loginSvg from "../assets/login.svg";
 import * as Yup from "yup";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import {
@@ -6,7 +6,9 @@ import {
   InputGroup,
   StyledError,
 } from "../Components/FormComponents";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { signUp } from "../../../app/Features/Auth/authSlice";
 
 const initialValues = {
   name: "",
@@ -24,9 +26,14 @@ const validationSchema = Yup.object({
 });
 
 export const Signup = () => {
-  const handleLogin = (values) => {
+  const dispatch = useDispatch();
+  const { signUpStatus } = useSearchParams((state) => state.auth);
+  console.log("Signup status: ", { signUpStatus });
+
+  const handleSignup = (values) => {
     const { name, email, password } = values;
     //dispatch login action here
+    dispatch(signUp({ name, email, password }));
     console.log({ name, email, password });
   };
 
@@ -35,7 +42,7 @@ export const Signup = () => {
       <div className="w-[80%] h-full mx-auto flex">
         <div className="w-1/2 h-full p-8">
           <img
-            src={login}
+            src={loginSvg}
             alt="login"
             style={{ height: "100%", width: "70%", margin: "0 auto" }}
           />
@@ -45,7 +52,7 @@ export const Signup = () => {
             <h2 className="text-4xl font-bold">Sign Up</h2>
             <Formik
               initialValues={initialValues}
-              onSubmit={handleLogin}
+              onSubmit={handleSignup}
               validationSchema={validationSchema}
             >
               <Form>

@@ -1,4 +1,4 @@
-import login from "../assets/login.svg";
+import loginSvg from "../assets/login.svg";
 import * as Yup from "yup";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import {
@@ -7,6 +7,8 @@ import {
   StyledError,
 } from "../Components/FormComponents";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../../../app/Features/Auth/authSlice";
 
 const initialValues = {
   email: "",
@@ -22,9 +24,13 @@ const validationSchema = Yup.object({
 });
 
 export const Login = () => {
+  const dispatch = useDispatch();
+  const { loggedInStatus } = useSelector((state) => state.auth);
+  console.log("Logged in status: ", { loggedInStatus });
+
   const handleLogin = (values) => {
     const { email, password } = values;
-    //dispatch login action here
+    dispatch(login({ email, password }));
     console.log({ email, password });
   };
 
@@ -33,7 +39,7 @@ export const Login = () => {
       <div className="w-[80%] h-full mx-auto flex">
         <div className="w-1/2 h-full p-8">
           <img
-            src={login}
+            src={loginSvg}
             alt="login"
             style={{ height: "100%", width: "70%", margin: "0 auto" }}
           />

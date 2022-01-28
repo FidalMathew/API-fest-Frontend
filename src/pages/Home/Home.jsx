@@ -17,10 +17,10 @@ export const Home = () => {
               Manage your personal Finances with ease
             </h2>
             <div className="w-full flex gap-[50px]">
-              <Link to="/login" className="rounded-sm px-6 py-2 bg-slate-900 text-gray-200 hover:bg-slate-800">
+              <Link to="login" className="rounded-sm px-6 py-2 bg-slate-900 text-gray-200 hover:bg-slate-800">
                 Login
               </Link>
-              <Link to="/signup" className="rounded-sm px-6 py-2 border border-slate-900 text-gray-700 hover:bg-slate-800 hover:text-gray-200">
+              <Link to="signup" className="rounded-sm px-6 py-2 border border-slate-900 text-gray-700 hover:bg-slate-800 hover:text-gray-200">
                 Signup
               </Link>
             </div>
