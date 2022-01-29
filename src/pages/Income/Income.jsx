@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { updateIncome } from "../../app/Features/User/UserSlice";
+import { updateIncome, updateExpense } from "../../app/Features/User/UserSlice";
 import {
   FormContainer,
   InputGroup,
@@ -13,22 +13,21 @@ export const Income = () => {
   const [mode, setMode] = useState("");
   const [notes, setNotes] = useState("");
 
-  // const [expense, setExpense] = useState("");
-  // const [expenseCategory, setEXpenseCategory] = useState("");
-  // const [expenseMode, setExpeseMode] = useState("");
-  // const [expenseNotes, setExpenseNotes] = useState("");
+  const [expense, setExpense] = useState("");
+  const [expenseCategory, setEXpenseCategory] = useState("");
+  const [expenseMode, setExpeseMode] = useState("");
+  const [expenseNotes, setExpenseNotes] = useState("");
 
   const dispatch = useDispatch();
   const { userId } = useSelector((state) => state.auth);
-  const { updateIncomeStatus } = useSelector((state) => state.user);
+  const { updateIncomeStatus, updateExpenseStatus } = useSelector((state) => state.user);
 
   const handleIncome = (e) => {
     e.preventDefault()
-    // const { income, category, mode, notes } = ;
     dispatch(
       updateIncome({
         income,
-        typeofOp: "credit",
+        typeOfOp: "credit",
         userId,
         category,
         mode,
@@ -37,12 +36,20 @@ export const Income = () => {
     );
   };
 
-  // const handleExpense = (values) => {
-  //   const { expense, category, mode, notes } = values;
-  // };
+  const handleExpense = (e) => {
+    e.preventDefault()
+    dispatch(updateExpense({
+      amount : expense, 
+      typeOfOp : "debit", 
+      userId, 
+      category : expenseCategory, 
+      mode : expenseMode, 
+      notes : expenseNotes
+    }))
+  };
 
   return (
-    <div className="w-full h-screen">
+    <div className="w-full h-screen flex">
       <div className="w-1/2 h-full">
         <div className="w-[80%] mx-auto ">
           <h1 className="text-2xl text-gray-700 font-semibold">
@@ -69,6 +76,7 @@ export const Income = () => {
                   onChange={(e) => setCategory(e.target.value)}
                   value={category}
                 >
+                  <option value="">Select option</option>
                   <option value="salary">Salary</option>
                   <option value="bank interest">Bank Interest</option>
                   <option value="gift">Gift</option>
@@ -83,6 +91,7 @@ export const Income = () => {
                   onChange={(e) => setMode(e.target.value)}
                   value={mode}
                 >
+                  <option value="">Select Option</option>
                   <option value="cash">Cash</option>
                   <option value="upi">UPI</option>
                   <option value="cheque">Cheque</option>
@@ -111,6 +120,84 @@ export const Income = () => {
                     </span>
                   ) : (
                     "Update Income"
+                  )}
+                </button>
+              </InputGroup>
+            </form>
+          </FormContainer>
+        </div>
+      </div>
+      <div className="w-1/2 h-full">
+        <div className="w-[80%] mx-auto ">
+          <h1 className="text-2xl text-gray-700 font-semibold">
+            Add Actual Expense
+          </h1>
+          <FormContainer>
+            <form>
+              <InputGroup>
+                <label htmlFor="expense">Expense</label>
+                <input
+                  type="number"
+                  id="expense"
+                  name="expense"
+                  autoComplete="off"
+                  value={expense}
+                  onChange={(e) => setExpense(e.target.value)}
+                />
+              </InputGroup>
+              <InputGroup>
+                <label htmlFor="expenseCategory">Expense Category</label>
+                <select
+                  name="expenseCategory"
+                  id="expenseCategory"
+                  onChange={(e) => setEXpenseCategory(e.target.value)}
+                  value={expenseCategory}
+                >
+                  <option value="">Select option</option>
+                  <option value="grocery">Grocery</option>
+                  <option value="education">Education</option>
+                  <option value="transport">Transport</option>
+                  <option value="gift">Gift</option>
+                  <option value="others">Others</option>
+                </select>
+              </InputGroup>
+              <InputGroup>
+                <label htmlFor="expenseMode">Expense Mode</label>
+                <select
+                  name="expenseMode"
+                  id="expenseMode"
+                  onChange={(e) => setExpeseMode(e.target.value)}
+                  value={expenseMode}
+                >
+                  <option value="">Select Option</option>
+                  <option value="cash">Cash</option>
+                  <option value="upi">UPI</option>
+                  <option value="cheque">Cheque</option>
+                </select>
+              </InputGroup>
+              <InputGroup>
+                <label htmlFor="expenseNotes">Expense Notes</label>
+                <input
+                  type="text"
+                  id="expenseNotes"
+                  name="expenseNotes"
+                  autoComplete="off"
+                  value={expenseNotes}
+                  onChange={(e) => setExpenseNotes(e.target.value)}
+                />
+              </InputGroup>
+              <InputGroup>
+                <button
+                  onClick={(e) => handleExpense(e)}
+                  className="rounded-sm px-6 py-2 bg-slate-900 text-gray-200 hover:bg-slate-800"
+                >
+                  {updateExpenseStatus === "loading" ? (
+                    <span className="w-full flex justify-center">
+                      <ClipLoader size={25} color="white" loading={true} />{" "}
+                      Please Wait
+                    </span>
+                  ) : (
+                    "Update Expense"
                   )}
                 </button>
               </InputGroup>

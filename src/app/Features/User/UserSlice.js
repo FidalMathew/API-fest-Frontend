@@ -3,6 +3,7 @@ import {
   getUserDataService,
   submitGoalsService,
   updateIncomeService,
+  updateExpenseService,
 } from "./services/userServices";
 
 export const getUserData = createAsyncThunk(
@@ -25,16 +26,32 @@ export const submitGoals = createAsyncThunk(
 
 export const updateIncome = createAsyncThunk(
   "user/updateIncome",
-  async ({ income, typeofOp, userId, category, mode, notes }) => {
+  async ({ income, typeOfOp, userId, category, mode, notes }) => {
     const response = await updateIncomeService(
       income,
-      typeofOp,
+      typeOfOp,
       userId,
       category,
       mode,
       notes
     );
     console.log("In updateIncome async thunk: ", { response });
+    return response.data;
+  }
+);
+
+export const updateExpense = createAsyncThunk(
+  "user/updateExpense",
+  async ({ amount, typeOfOp, userId, category, mode, notes }) => {
+    const response = await updateExpenseService(
+      amount,
+      typeOfOp,
+      userId,
+      category,
+      mode,
+      notes
+    );
+    console.log("In updateExpense async thunk: ", { response });
     return response.data;
   }
 );
@@ -54,6 +71,8 @@ const userInitialState = {
   updateTargetsError: null,
   updateIncomeStatus: "idle",
   updateIncomeError: null,
+  updateExpenseStatus: "idle",
+  updateExpenseError: null,
 };
 
 export const userSlice = createSlice({
@@ -119,11 +138,26 @@ export const userSlice = createSlice({
       state.updateIncomeError = null;
     },
     [updateIncome.fulfilled]: (state, action) => {
+      const { income } = action.payload;
+      state.credit += income;
       console.log("Inside updateIncome extra reducers: ", action.payload);
       state.updateIncomeStatus = "fulfilled";
     },
     [updateIncome.rejected]: (state) => {
       state.updateIncomeError = state.updateIncomeStatus = "error";
+    },
+    [updateExpense.pending]: (state) => {
+      state.updateExpenseStatus = "loading";
+      state.updateExpenseError = null;
+    },
+    [updateExpense.fulfilled]: (state, action) => {
+      const { amount } = action.payload 
+      state.debit += amount
+      console.log("In updateExpense extraReducers: ", action.payload);
+      state.updateExpenseStatus = "fulfilled";
+    },
+    [updateExpense.rejected]: (state) => {
+      state.updateExpenseError = state.updateExpenseStatus = "error";
     },
   },
 });
