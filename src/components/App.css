@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.App {
+    margin: 2%;
+}
+
+.chart-1 {
+    width: 100%;
+    max-width: 500px;
+}
+
+#transactionHistory {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th, tr {
+    border: 1px solid #000000;
+    text-align: left;
+    padding: 8px;
+    text-align: center;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
