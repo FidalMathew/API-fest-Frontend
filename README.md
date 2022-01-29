@@ -1,7 +1,10 @@
-# Btracker
+<!-- # Btracker -->
+<h1 align="center" id="btracker">Btracker</h1>
+
+<h2 align="center"> Your personal budget tracking app. </h2>
 The Btracker app allows the user to manage his/her budget and finances in an efficient way. Let's look how to get started and all the features Btracker offers.
 
-## Home
+## Home 
 This is the landing page of Btracker App. The user has to signup/login to move to his/her personal dashboard to use the features.
 
 ![home](https://user-images.githubusercontent.com/84982038/151601054-e519253c-21ea-41fe-9e59-6843314d4e64.png)
