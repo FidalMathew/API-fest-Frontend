@@ -34,4 +34,11 @@ After successful registration/signup, the user has to login to the platform usin
 
 ![login](https://user-images.githubusercontent.com/84982038/151600967-e1c14d27-d68e-45aa-a68e-fa7eacbe9bcf.png)
 
+### Dashboard
+![image](https://user-images.githubusercontent.com/84982038/151658255-c4a74659-f72e-4e18-8912-97b27fd7b4b0.png)
 
+### Add Income/Expenses
+![image](https://user-images.githubusercontent.com/84982038/151658258-f324c40b-bed5-4316-92b1-d9ac429b91ba.png)
+
+### Transaction History
+![image](https://user-images.githubusercontent.com/84982038/151658262-12577d7d-c964-4719-8f33-cc5d73876c27.png)
