@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getUserData, submitGoals } from "../../app/Features/User/UserSlice";
+import {
+  getUserData,
+  submitGoals,
+  updateTarget,
+} from "../../app/Features/User/UserSlice";
+import { logout } from "../../app/Features/Auth/authSlice";
 import * as Yup from "yup";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import {
@@ -10,7 +15,6 @@ import {
 } from "../UserAuthentication/Components/FormComponents";
 import { useNavigate } from "react-router";
 import { ClipLoader } from "react-spinners";
-import { updateTarget } from "../../app/Features/User/UserSlice"
 
 const initialValues = {
   income: "",
@@ -38,14 +42,23 @@ export const Dashboard = () => {
   const handleTargetSubmit = (values) => {
     const { income, savings } = values;
     console.log("Target: ", { income, savings, userId });
-    dispatch(updateTarget({ income, savings }))
-    dispatch(submitGoals({ income, savings, userId }))
+    dispatch(updateTarget({ income, savings }));
+    dispatch(submitGoals({ income, savings, userId }));
   };
 
   const navigate = useNavigate();
 
   return (
-    <div className="w-full h-screen">
+    <div className="w-full h-screen relative">
+      <button
+        onClick={() => {
+          navigate("/");
+          dispatch(logout());
+        }}
+        className="rounded-sm px-6 py-2 bg-slate-900 text-gray-200 hover:bg-slate-800 absolute right-2 top-2"
+      >
+        Logout
+      </button>
       <div className="w-[80%] mx-auto flex flex-col justify-center items-center py-4 gap-[30px]">
         <h1 className="text-gray-800 text-4xl font-semibold">Dashboard</h1>
         <h1 className="text-gray-600 text-3xl font-semibold">
