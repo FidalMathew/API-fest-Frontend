@@ -6,6 +6,9 @@
   .form__container {
     @apply w-96 min-h-[450px] flex flex-col justify-evenly border p-2 px-4 border-solid rounded-md shadow-lg;
   }
+  .form__container_small {
+    @apply w-[400px] min-h-[150px] flex flex-col justify-evenly border p-2 px-4 border-solid rounded-md shadow-lg;
+  }
   .input__group {
     @apply flex flex-col my-2;
   }
