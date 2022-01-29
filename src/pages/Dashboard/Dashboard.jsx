@@ -148,7 +148,7 @@ export const Dashboard = () => {
               </button>
               <button
                 className="rounded-sm px-6 py-2 bg-slate-900 text-gray-200 hover:bg-slate-800"
-                onClick={() => navigate("/history")}
+                onClick={() => navigate("/transactions")}
               >
                 Transaction History
               </button>

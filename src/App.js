@@ -1,6 +1,6 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import { Home, Login, Signup, Dashboard, Income } from "./pages";
+import { Home, Login, Signup, Dashboard, Income, Transaction } from "./pages";
 import { PrivateRoute } from "./privateRoute/privateRoute";
 
 function App() {
@@ -26,7 +26,7 @@ function App() {
             </PrivateRoute>
           }
         />
-        {/* <Route
+        <Route
           path="/transactions"
           element={
             <PrivateRoute>
@@ -34,7 +34,7 @@ function App() {
             </PrivateRoute>
           }
         />
-        <Route
+        {/* <Route
           path="/charts"
           element={
             <PrivateRoute>
