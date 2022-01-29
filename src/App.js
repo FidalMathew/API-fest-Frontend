@@ -18,14 +18,14 @@ function App() {
             </PrivateRoute>
           }
         />
-        {/* <Route
+        <Route
           path="/income"
           element={
             <PrivateRoute>
               <Income />
             </PrivateRoute>
           }
-        /> */}
+        />
         {/* <Route
           path="/transactions"
           element={
