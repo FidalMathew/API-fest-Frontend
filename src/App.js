@@ -1,6 +1,6 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import { Home, Login, Signup, Dashboard } from "./pages";
+import { Home, Login, Signup, Dashboard, Income } from "./pages";
 import { PrivateRoute } from "./privateRoute/privateRoute";
 
 function App() {
@@ -19,22 +19,14 @@ function App() {
           }
         />
         {/* <Route
-          path="/goal"
-          element={
-            <PrivateRoute>
-              <Goal />
-            </PrivateRoute>
-          }
-        />
-        <Route
           path="/income"
           element={
             <PrivateRoute>
               <Income />
             </PrivateRoute>
           }
-        />
-        <Route
+        /> */}
+        {/* <Route
           path="/transactions"
           element={
             <PrivateRoute>
