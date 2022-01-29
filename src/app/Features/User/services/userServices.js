@@ -13,7 +13,7 @@ export const submitGoalsService = async (income, savings, userId) => {
 
 export const updateIncomeService = async (
   income,
-  typeofOp,
+  typeOfOp,
   userId,
   category,
   mode,
@@ -21,7 +21,25 @@ export const updateIncomeService = async (
 ) => {
   return authorizedAxios.post("income", {
     income,
-    typeofOp,
+    typeOfOp,
+    userId,
+    category,
+    mode,
+    notes,
+  });
+};
+
+export const updateExpenseService = async (
+  amount,
+  typeOfOp,
+  userId,
+  category,
+  mode,
+  notes
+) => {
+  return authorizedAxios.post("expense", {
+    amount,
+    typeOfOp,
     userId,
     category,
     mode,
